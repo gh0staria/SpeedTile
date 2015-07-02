@@ -6,17 +6,25 @@ var time = 0;
 
 //  Draw all 25 tiles onto the page
 function drawTiles() {
-	for (ii = 1; ii <= 25; ii += 1) {
-		//  For each tile, create a div
-		var tile = document.createElement('div');
-		//  Add the tile class to the div
-		tile.setAttribute('class', 'tile');
-		//  Add a random color class
-		var randCol = colors[Math.floor(Math.random() * 6)];
-		tile.className += " " + randCol;
-		//  Put the div in the container
-		var tileContainer = document.getElementById('grid');
-		tileContainer.appendChild(tile);
+	//  Define where the grid will be made
+	var tileContainer = document.getElementById('grid');
+	//  Loop it 5 times, once for each row
+	for (i = 0; i < 5; i++) {
+		//  Create a div with the class row
+		var row = document.createElement("div");
+		row.className = "row";
+		//  Loop it 5x for each column
+		for (x = 1; x <= 5; x++) {
+			//  Create a cell
+			var cell = document.createElement("div");
+			//  Add a random color class
+			var randCol = colors[Math.floor(Math.random() * 6)];
+			cell.className += "tile " + randCol;
+			//  Add the cell to the row
+			row.appendChild(cell);
+		}
+		//  Add the row to the grid container
+		tileContainer.appendChild(row);
 	}
 }
 
