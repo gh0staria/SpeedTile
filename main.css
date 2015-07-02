@@ -1,24 +1,51 @@
+/* Standard selectors */
 .tile {
 	width: 100px;
 	height: 100px;
 	border-radius: 20px;
 	margin: 5px;
 }
-.red {
+.colorDisplay {
+	text-transform: uppercase;
+}
+#grid {
+	height: 535px;
+}
+/* Tile colors */
+.redTile {
 	background: #f52626;
 }
-.pink {
+.pinkTile {
 	background: #f014b5;
 }
-.purple {
+.purpleTile {
 	background: #ad26f5;
 }
-.blue {
+.blueTile {
 	background: #269df5;
 }
-.green {
+.greenTile {
 	background: #26f52e;
 }
-.orange {
+.orangeTile {
 	background: #f59d26;
+}
+/* colorDisplay colors */
+.red {
+	color: #f52626;
+}
+.pink {
+	color: #f014b5;
+}
+.purple {
+	color: #ad26f5;
+}
+.blue {
+	color: #269df5;
+}
+.green {
+	color: #26f52e;
+}
+.orange {
+	color: #f59d26;
 }

@@ -1,4 +1,6 @@
 var tilesArray = [];
+var colors = ["redTile", "pinkTile", "purpleTile", "blueTile", "greenTile", "orangeTile"];
+var textColors = ["red", "pink", "purple", "blue", "green", "orange"];
 var score = 0;
 var time = 0;
 
@@ -10,7 +12,6 @@ function drawTiles() {
 		//  Add the tile class to the div
 		tile.setAttribute('class', 'tile');
 		//  Add a random color class
-		var colors = ["red", "pink", "purple", "blue", "green", "orange"];
 		var randCol = colors[Math.floor(Math.random() * 6)];
 		tile.className += " " + randCol;
 		//  Put the div in the container
@@ -19,17 +20,21 @@ function drawTiles() {
 	}
 }
 
+//  Changes the color you're supposed to click on
+function changeCurrentColor() {
+	//  Randomize the color
+	var randCol = textColors[Math.floor(Math.random() * 6)];
+	//  Update the color displayer
+	var colorDisplayer = document.getElementById('colorDisplay');
+	colorDisplayer.innerHTML = 'Click on the <span class="colorDisplay ' + randCol + '">' + randCol + '</span> tiles.';
+	//colorDisplayer.className += randCol;
+}
+
 //  Randomize all the tile colors
 /*function shuffleColors() {
 	//  Loop through the tilesArray
 	//  Change the color of every tile
 	//  Update the tile colors
-}
-
-//  Changes the color you're supposed to click on
-function changeCurrentColor() {
-	//  Randomize the color
-	//  Update the color displayer
 }
 
 //  Time handling for the game
@@ -53,3 +58,4 @@ function checkTile() {
 }*/
 
 drawTiles();
+changeCurrentColor();
