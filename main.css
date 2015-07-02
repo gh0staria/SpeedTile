@@ -1,7 +1,24 @@
 .tile {
 	width: 100px;
 	height: 100px;
-	background: red;
 	border-radius: 20px;
 	margin: 5px;
+}
+.red {
+	background: #f52626;
+}
+.pink {
+	background: #f014b5;
+}
+.purple {
+	background: #ad26f5;
+}
+.blue {
+	background: #269df5;
+}
+.green {
+	background: #26f52e;
+}
+.orange {
+	background: #f59d26;
 }

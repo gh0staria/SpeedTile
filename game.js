@@ -1,39 +1,21 @@
-/*var randCol;
-
-function randColor() {
-	var colors = ["#f52626", "#f014b5", "#9526f5", "#269df5", "#26f52e", "#f59d26"];
-	randCol = colors[Math.floor(Math.random() * 6)];
-	return randCol;
-}
-
-function Tile(id) {
-	this.id = id;
-	randColor();
-	this.color = randCol;
-}
-
-function buildTileGrid() {
-	for (ii = 1; ii <= 25; ii++) {
-		var tile = new Tile(ii);
-		console.log(Tile.id);
-	}
-}
-
-buildTileGrid();*/
-/* =============================================================================================================== */
 var tilesArray = [];
 var score = 0;
 var time = 0;
 
-//  Draw all the tiles onto the page
+//  Draw all 25 tiles onto the page
 function drawTiles() {
-	for (ii = 1; ii <= 25; ii++) {
+	for (ii = 1; ii <= 25; ii += 1) {
 		//  For each tile, create a div
 		var tile = document.createElement('div');
 		//  Add the tile class to the div
 		tile.setAttribute('class', 'tile');
+		//  Add a random color class
+		var colors = ["red", "pink", "purple", "blue", "green", "orange"];
+		var randCol = colors[Math.floor(Math.random() * 6)];
+		tile.className += " " + randCol;
 		//  Put the div in the container
-		document.body.appendChild(tile);
+		var tileContainer = document.getElementById('grid');
+		tileContainer.appendChild(tile);
 	}
 }
 
