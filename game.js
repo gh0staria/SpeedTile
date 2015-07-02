@@ -1,5 +1,6 @@
 var colors = ["red", "pink", "purple", "blue", "green", "orange"];
 var score = 0;
+var lives = 5;
 var time = 0;
 
 //  Draw all 25 tiles onto the page
@@ -49,7 +50,12 @@ function checkTile() {
 		//  Update the score
 		document.getElementById('scoreText').innerHTML = score;
 	} else {
-		console.log('nope (:');
+		lives -= 1;
+		document.getElementById('livesText').innerHTML = lives;
+		if (lives <= 0) {
+			alert('GAME OVER!');
+			location.reload();
+		}
 	}
 }
 
