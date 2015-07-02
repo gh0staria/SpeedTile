@@ -6,7 +6,7 @@
 	margin: 2px;
 	display: inline-block;
 }
-.colorDisplay {
+#colorSpan {
 	text-transform: uppercase;
 }
 .row {

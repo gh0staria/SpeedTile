@@ -1,4 +1,3 @@
-var tilesArray = [];
 var colors = ["red", "pink", "purple", "blue", "green", "orange"];
 var score = 0;
 var time = 0;
@@ -19,8 +18,10 @@ function drawTiles() {
 			//  Add a random color class
 			var randCol = colors[Math.floor(Math.random() * 6)];
 			cell.className += "tile " + randCol;
+			//  Add color attribute
+			cell.setAttribute('color', randCol);
 			//  Add an onclick event
-			//cell.onclick = checkTile;
+			cell.onclick = checkTile;
 			//  Add the cell to the row
 			row.appendChild(cell);
 		}
@@ -35,14 +36,22 @@ function changeCurrentColor() {
 	var randCol = colors[Math.floor(Math.random() * 6)];
 	//  Update the color displayer
 	var colorDisplayer = document.getElementById('colorDisplay');
-	colorDisplayer.innerHTML = 'Click on the <span class="colorDisplay ' + randCol + '">' + randCol + '</span> tiles.';
-	//colorDisplayer.className += randCol;
+	colorDisplayer.innerHTML = 'Click on the <span color="' + randCol + '" id="colorSpan" class="' + randCol + '">' + randCol + '</span> tiles.';
 }
 
 //  Handles events when the player clicks on a tile
-/*function checkTile() {
-
-}*/
+function checkTile() {
+	var currentColorSpan = document.getElementById('colorSpan');
+	//  If the colors match
+	if (this.getAttribute('color') === currentColorSpan.getAttribute('color')) {
+		//  Add points to the score
+		score += 5;
+		//  Update the score
+		document.getElementById('scoreText').innerHTML = score;
+	} else {
+		console.log('nope (:');
+	}
+}
 
 //  Randomize all the tile colors
 /*function shuffleColors() {
