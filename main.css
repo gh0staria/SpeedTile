@@ -12,41 +12,28 @@
 .row {
 	display: block;
 }
-/* Tile colors */
-.redTile {
+/* colors */
+.red {
+	color: #ffffff;
 	background: #f52626;
 }
-.pinkTile {
+.pink {
+	color: #ffffff;
 	background: #f014b5;
 }
-.purpleTile {
+.purple {
+	color: #ffffff;
 	background: #ad26f5;
 }
-.blueTile {
+.blue {
+	color: #ffffff;
 	background: #269df5;
 }
-.greenTile {
+.green {
+	color: #ffffff;
 	background: #26f52e;
 }
-.orangeTile {
-	background: #f59d26;
-}
-/* colorDisplay colors */
-.red {
-	color: #f52626;
-}
-.pink {
-	color: #f014b5;
-}
-.purple {
-	color: #ad26f5;
-}
-.blue {
-	color: #269df5;
-}
-.green {
-	color: #26f52e;
-}
 .orange {
-	color: #f59d26;
+	color: #ffffff;
+	background: #f59d26;
 }
