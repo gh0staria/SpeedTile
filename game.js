@@ -3,6 +3,12 @@ var score = 0;
 var lives = 5;
 var time = 0;
 
+//  Get a random color
+function randomColor() {
+	var randCol = colors[Math.floor(Math.random() * 6)];
+	return randCol;
+}
+
 //  Draw all 25 tiles onto the page
 function drawTiles() {
 	//  Define where the grid will be made
@@ -17,7 +23,7 @@ function drawTiles() {
 			//  Create a cell
 			var cell = document.createElement("div");
 			//  Add a random color class
-			var randCol = colors[Math.floor(Math.random() * 6)];
+			var randCol = randomColor();
 			cell.className += "tile " + randCol;
 			//  Add color attribute
 			cell.setAttribute('color', randCol);
@@ -34,7 +40,7 @@ function drawTiles() {
 //  Changes the color you're supposed to click on
 function changeCurrentColor() {
 	//  Randomize the color
-	var randCol = colors[Math.floor(Math.random() * 6)];
+	var randCol = randomColor();
 	//  Update the color displayer
 	var colorDisplayer = document.getElementById('colorDisplay');
 	colorDisplayer.innerHTML = 'Click on the <span color="' + randCol + '" id="colorSpan" class="' + randCol + '">' + randCol + '</span> tiles.';
@@ -50,7 +56,7 @@ function checkTile() {
 		//  Update the score
 		document.getElementById('scoreText').innerHTML = score;
 		//  Randomize the tile's color
-		var randCol = colors[Math.floor(Math.random() * 6)];
+		var randCol = randomColor();
 		this.setAttribute('color', randCol);
 		var newClass = "tile " + randCol;
 		this.setAttribute('class', newClass);
@@ -64,6 +70,22 @@ function checkTile() {
 	}
 }
 
+//  Randomizes all tile colors
+function shuffleColors() {
+	var tilesArray = document.getElementsByClassName('tile');
+	//  Loop 25 times, once per tile
+	for (xx = 0; xx < tilesArray.length; xx++) {
+		//  Pick a random color
+		var randCol = randomColor();
+		tilesArray[xx].setAttribute('color', randCol);
+		var newClass = "tile " + randCol;
+		tilesArray[xx].setAttribute('class', newClass);
+		tilesArray[xx].setAttribute('class', newClass);
+	}
+}
+
 //  Calls the functions and stuff
 drawTiles();
 changeCurrentColor();
+
+// colors[Math.floor(Math.random() * 6)];
