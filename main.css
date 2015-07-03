@@ -12,6 +12,9 @@
 .row {
 	display: block;
 }
+p {
+	margin: 5px;
+}
 /* colors */
 .red {
 	color: #ffffff;

@@ -49,6 +49,11 @@ function checkTile() {
 		score += 5;
 		//  Update the score
 		document.getElementById('scoreText').innerHTML = score;
+		//  Randomize the tile's color
+		var randCol = colors[Math.floor(Math.random() * 6)];
+		this.setAttribute('color', randCol);
+		var newClass = "tile " + randCol;
+		this.setAttribute('class', newClass);
 	} else {
 		lives -= 1;
 		document.getElementById('livesText').innerHTML = lives;
@@ -59,20 +64,6 @@ function checkTile() {
 	}
 }
 
-//  Randomize all the tile colors
-/*function shuffleColors() {
-	//  Loop through the tilesArray
-	//  Change the color of every tile
-	//  Update the tile colors
-}
-
-//  Time handling for the game
-function timeHandler() {
-	//  Start the timer
-	//  Check score tier
-	//  If score is a certain amount
-	//  Run shuffleColors every x seconds
-}*/
-
+//  Calls the functions and stuff
 drawTiles();
 changeCurrentColor();
