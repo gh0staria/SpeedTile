@@ -115,6 +115,12 @@ function changeColor() {
 	}
 }
 
+//  Shuffle the tile board every 2 seconds
+var tileShuffleTimer = window.setInterval(shuffleColors, 2000);
+//  Change the color every 10 seconds
+var colorShuffleTimer = window.setInterval(changeColor, 10000);
+
+
 //  Calls the functions and stuff
 drawTiles();
 setCurrentColor();
