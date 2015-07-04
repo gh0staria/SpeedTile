@@ -196,7 +196,7 @@ function gameOver() {
 	popup.setAttribute('class', 'popup');
 	popup.setAttribute('id', 'popup');
 	//  Add content to the popup
-	popup.innerHTML = '<h3>Game Over!</h3><p>Your score was: ' + score + '<br><button onclick="restartGame()">Restart</button><a href="https://twitter.com/intent/tweet?text=I%20played%20SpeedTile%20and%20got%20a%20score%20of%20' + score + '.%20Dare%20to%20beat%20me%3F%20URL"><button>Tweet your score</button></a></p>';
+	popup.innerHTML = '<h3>Game Over!</h3><p>Your score was: ' + score + '<br><button onclick="restartGame()">Restart</button><a href="https://twitter.com/intent/tweet?text=I%20played%20SpeedTile%20and%20got%20a%20score%20of%20' + score + '.%20Dare%20to%20beat%20me%3F%20http%3A%2F%2Fgh0staria.github.io%2FSpeedTile%2F"><button>Tweet your score</button></a></p>';
 	//  Add the popup to the game
 	area.appendChild(popup);
 	//  Stop the timers
