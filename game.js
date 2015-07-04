@@ -1,3 +1,10 @@
+//  Startup fastclick
+if ('addEventListener' in document) {
+    document.addEventListener('DOMContentLoaded', function() {
+        FastClick.attach(document.body);
+    }, false);
+}
+
 var colors = ['red', 'pink', 'purple', 'blue', 'green', 'orange'];
 var score = 0;
 var lives = 5;
