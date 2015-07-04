@@ -6,6 +6,11 @@
 	margin: 2px;
 	display: inline-block;
 }
+#grid {
+	width: 520px;
+	height: 540px;
+	overflow: hidden;
+}
 #colorSpan {
 	text-transform: uppercase;
 }
@@ -58,4 +63,44 @@ button {
 	top: 275px;
 	border-radius: 10px;
 	box-shadow: 5px 5px 5px rgba(149, 149, 149, 0.81);
+}
+/* MOBILE DEVICES */
+@media (max-width: 414px) {
+	.tile {
+		width: 75px;
+		height: 75px;
+		border-radius: 7px;
+		margin: 2px;
+	}
+	#grid {
+		width: 400px;
+		height: 410px;
+		overflow: hidden;
+	}
+}
+@media (max-width: 400px) {
+	.tile {
+		width: 65px;
+		height: 65px;
+		border-radius: 6px;
+		margin: 2px;
+	}
+	#grid {
+		width: 350px;
+		height: 360px;
+		overflow: hidden;
+	}
+}
+@media (max-width: 320px) {
+	.tile {
+		width: 60px;
+		height: 60px;
+		border-radius: 6px;
+		margin: 1px;
+	}
+	#grid {
+		width: 310px;
+		height: 330px;
+		overflow: hidden;
+	}
 }
