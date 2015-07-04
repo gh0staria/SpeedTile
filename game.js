@@ -162,8 +162,6 @@ function changeColor() {
 
 //  Shuffle the tile board every 2 seconds
 var tileShuffleTimer = window.setInterval(shuffleColors, 3000);
-//  Change the color every 10 seconds
-var colorShuffleTimer = window.setInterval(changeColor, 15000);
 
 function pauseTimers() {
 	if (paused == false) {
@@ -174,7 +172,6 @@ function pauseTimers() {
 	} else {
 		//  Start the timers again
 		tileShuffleTimer = window.setInterval(shuffleColors, 3000);
-		colorShuffleTimer = window.setInterval(changeColor, 15000);
 		paused = false;
 	}
 }
@@ -192,7 +189,6 @@ function gameOver() {
 	area.appendChild(popup);
 	//  Stop the timers
 	window.clearInterval(tileShuffleTimer);
-	window.clearInterval(colorShuffleTimer);
 }
 
 function restartGame() {
