@@ -38,11 +38,11 @@ function drawTiles() {
 }
 
 //  Changes the color you're supposed to click on
-function changeCurrentColor() {
+function setCurrentColor() {
+	var colorDisplayer = document.getElementById('colorDisplay');
 	//  Randomize the color
 	var randCol = randomColor();
 	//  Update the color displayer
-	var colorDisplayer = document.getElementById('colorDisplay');
 	colorDisplayer.innerHTML = 'Click on the <span color="' + randCol + '" id="colorSpan" class="' + randCol + '">' + randCol + '</span> tiles.';
 }
 
@@ -55,11 +55,26 @@ function checkTile() {
 		score += 5;
 		//  Update the score
 		document.getElementById('scoreText').innerHTML = score;
-		//  Randomize the tile's color
+		//  Get the current color
+		var currColor = this.getAttribute('color');
+		//  Set a random color
 		var randCol = randomColor();
-		this.setAttribute('color', randCol);
-		var newClass = "tile " + randCol;
-		this.setAttribute('class', newClass);
+		//  If the colors are the same:
+		if (randCol === currColor) {
+			//  Randomize it again
+			while (randCol === currColor) {
+				var randCol = randomColor();
+			}
+			// Add all the attributes and classes and stuff
+			this.setAttribute('color', randCol);
+			var newClass = "tile " + randCol;
+			this.setAttribute('class', newClass);
+		} else {
+			// Add all the attributes and classes and stuff
+			this.setAttribute('color', randCol);
+			var newClass = "tile " + randCol;
+			this.setAttribute('class', newClass);
+		}
 	} else {
 		lives -= 1;
 		document.getElementById('livesText').innerHTML = lives;
@@ -77,6 +92,7 @@ function shuffleColors() {
 	for (xx = 0; xx < tilesArray.length; xx++) {
 		//  Pick a random color
 		var randCol = randomColor();
+		//  If the color 
 		tilesArray[xx].setAttribute('color', randCol);
 		var newClass = "tile " + randCol;
 		tilesArray[xx].setAttribute('class', newClass);
@@ -84,8 +100,21 @@ function shuffleColors() {
 	}
 }
 
+//  Randomizes the color to find
+function changeColor() {
+	var newColor = randomColor();
+	var currentColor = document.getElementById('colorSpan').getAttribute('color');
+	//  If the colors are the same
+	if (newColor === currentColor) {
+		while (newColor === currentColor) {
+			newColor = randomColor();
+		}
+		document.getElementById('colorDisplay').innerHTML = 'Click on the <span color="' + newColor + '" id="colorSpan" class="' + newColor + '">' + newColor + '</span> tiles.';
+	} else {
+		document.getElementById('colorDisplay').innerHTML = 'Click on the <span color="' + newColor + '" id="colorSpan" class="' + newColor + '">' + newColor + '</span> tiles.';
+	}
+}
+
 //  Calls the functions and stuff
 drawTiles();
-changeCurrentColor();
-
-// colors[Math.floor(Math.random() * 6)];
+setCurrentColor();
