@@ -1,19 +1,25 @@
 //  Disable 300ms delay on mobile
 function NoClickDelay(el) {
 	this.element = el;
-	if( window.Touch ) this.element.addEventListener('touchstart', this, false);
+	if (window.Touch) {this.element.addEventListener('touchstart', this, false); }
 }
 
 NoClickDelay.prototype = {
-	handleEvent: function(e) {
-		switch(e.type) {
-			case 'touchstart': this.onTouchStart(e); break;
-			case 'touchmove': this.onTouchMove(e); break;
-			case 'touchend': this.onTouchEnd(e); break;
+	handleEvent: function (e) {
+		switch (e.type) {
+		case 'touchstart':
+			this.onTouchStart(e);
+			break;
+		case 'touchmove':
+			this.onTouchMove(e);
+			break;
+		case 'touchend':
+			this.onTouchEnd(e);
+			break;
 		}
 	},
 
-	onTouchStart: function(e) {
+	onTouchStart: function (e) {
 		e.preventDefault();
 		this.moved = false;
 
@@ -21,18 +27,18 @@ NoClickDelay.prototype = {
 		this.element.addEventListener('touchend', this, false);
 	},
 
-	onTouchMove: function(e) {
+	onTouchMove: function (e) {
 		this.moved = true;
 	},
 
-	onTouchEnd: function(e) {
+	onTouchEnd: function (e) {
 		this.element.removeEventListener('touchmove', this, false);
 		this.element.removeEventListener('touchend', this, false);
 
-		if( !this.moved ) {
+		if (!this.moved) {
 			// Place your code here or use the click simulation below
 			var theTarget = document.elementFromPoint(e.changedTouches[0].clientX, e.changedTouches[0].clientY);
-			if(theTarget.nodeType == 3) theTarget = theTarget.parentNode;
+			if (theTarget.nodeType === 3) {theTarget = theTarget.parentNode; }
 
 			var theEvent = document.createEvent('MouseEvents');
 			theEvent.initEvent('click', true, true);
@@ -48,6 +54,9 @@ var colors = ['red', 'pink', 'purple', 'blue', 'green', 'orange'];
 var score = 0;
 var lives = 5;
 var paused = false;
+var i;
+var x;
+var xx;
 
 //  Get a random color
 function randomColor() {
@@ -60,12 +69,12 @@ function drawTiles() {
 	//  Define where the grid will be made
 	var tileContainer = document.getElementById('grid');
 	//  Loop it 5 times, once for each row
-	for (i = 0; i < 5; i++) {
+	for (i = 0; i < 5; i += 1) {
 		//  Create a div with the class row
 		var row = document.createElement('div');
 		row.className = 'row';
 		//  Loop it 5x for each column
-		for (x = 1; x <= 5; x++) {
+		for (x = 1; x <= 5; x += 1) {
 			//  Create a cell
 			var cell = document.createElement('div');
 			//  Add a random color class
@@ -122,9 +131,13 @@ function checkTile() {
 			this.setAttribute('class', newClass);
 		}
 	} else {
-		lives -= 1;
-		document.getElementById('livesText').innerHTML = lives;
-		if (lives <= 0) {
+		if (lives > 0) {
+			lives -= 1;
+			document.getElementById('livesText').innerHTML = lives;
+			if (lives === 0) {
+				gameOver();
+			}
+		} else {
 			gameOver();
 		}
 	}
@@ -134,7 +147,7 @@ function checkTile() {
 function shuffleColors() {
 	var tilesArray = document.getElementsByClassName('tile');
 	//  Loop 25 times, once per tile
-	for (xx = 0; xx < tilesArray.length; xx++) {
+	for (xx = 0; xx < tilesArray.length; xx += 1) {
 		//  Pick a random color
 		var randCol = randomColor();
 		//  If the color 
@@ -164,10 +177,9 @@ function changeColor() {
 var tileShuffleTimer = window.setInterval(shuffleColors, 3000);
 
 function pauseTimers() {
-	if (paused == false) {
+	if (paused === false) {
 		//  Clear the timers
 		window.clearInterval(tileShuffleTimer);
-		window.clearInterval(colorShuffleTimer);
 		paused = true;
 	} else {
 		//  Start the timers again
