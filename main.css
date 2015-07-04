@@ -25,6 +25,7 @@
 }
 .row {
 	display: block;
+	margin: 0 0 -4px 0;
 }
 p {
 	margin: 5px;
