@@ -1,10 +1,3 @@
-//  Startup fastclick
-if ('addEventListener' in document) {
-    document.addEventListener('DOMContentLoaded', function() {
-        FastClick.attach(document.body);
-    }, false);
-}
-
 //  Disable 300ms delay on mobile
 function NoClickDelay(el) {
 	this.element = el;
