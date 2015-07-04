@@ -2,6 +2,7 @@ var colors = ["red", "pink", "purple", "blue", "green", "orange"];
 var score = 0;
 var lives = 5;
 var time = 0;
+var paused = false;
 
 //  Get a random color
 function randomColor() {
@@ -120,6 +121,19 @@ var tileShuffleTimer = window.setInterval(shuffleColors, 2000);
 //  Change the color every 10 seconds
 var colorShuffleTimer = window.setInterval(changeColor, 10000);
 
+function pauseTimers() {
+	if (paused == false) {
+		//  Clear the timers
+		window.clearInterval(tileShuffleTimer);
+		window.clearInterval(colorShuffleTimer);
+		paused = true;
+	} else {
+		//  Start the timers again
+		tileShuffleTimer = window.setInterval(shuffleColors, 2000);
+		colorShuffleTimer = window.setInterval(changeColor, 10000);
+		paused = false;
+	}
+}
 
 //  Calls the functions and stuff
 drawTiles();
