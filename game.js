@@ -5,6 +5,52 @@ if ('addEventListener' in document) {
     }, false);
 }
 
+//  Disable 300ms delay on mobile
+function NoClickDelay(el) {
+	this.element = el;
+	if( window.Touch ) this.element.addEventListener('touchstart', this, false);
+}
+
+NoClickDelay.prototype = {
+	handleEvent: function(e) {
+		switch(e.type) {
+			case 'touchstart': this.onTouchStart(e); break;
+			case 'touchmove': this.onTouchMove(e); break;
+			case 'touchend': this.onTouchEnd(e); break;
+		}
+	},
+
+	onTouchStart: function(e) {
+		e.preventDefault();
+		this.moved = false;
+
+		this.element.addEventListener('touchmove', this, false);
+		this.element.addEventListener('touchend', this, false);
+	},
+
+	onTouchMove: function(e) {
+		this.moved = true;
+	},
+
+	onTouchEnd: function(e) {
+		this.element.removeEventListener('touchmove', this, false);
+		this.element.removeEventListener('touchend', this, false);
+
+		if( !this.moved ) {
+			// Place your code here or use the click simulation below
+			var theTarget = document.elementFromPoint(e.changedTouches[0].clientX, e.changedTouches[0].clientY);
+			if(theTarget.nodeType == 3) theTarget = theTarget.parentNode;
+
+			var theEvent = document.createEvent('MouseEvents');
+			theEvent.initEvent('click', true, true);
+			theTarget.dispatchEvent(theEvent);
+		}
+	}
+};
+
+new NoClickDelay(document.getElementById('grid'));
+//  end noclickdelay
+
 var colors = ['red', 'pink', 'purple', 'blue', 'green', 'orange'];
 var score = 0;
 var lives = 5;
@@ -122,9 +168,9 @@ function changeColor() {
 }
 
 //  Shuffle the tile board every 2 seconds
-var tileShuffleTimer = window.setInterval(shuffleColors, 2000);
+var tileShuffleTimer = window.setInterval(shuffleColors, 3000);
 //  Change the color every 10 seconds
-var colorShuffleTimer = window.setInterval(changeColor, 10000);
+var colorShuffleTimer = window.setInterval(changeColor, 15000);
 
 function pauseTimers() {
 	if (paused == false) {
@@ -134,8 +180,8 @@ function pauseTimers() {
 		paused = true;
 	} else {
 		//  Start the timers again
-		tileShuffleTimer = window.setInterval(shuffleColors, 2000);
-		colorShuffleTimer = window.setInterval(changeColor, 10000);
+		tileShuffleTimer = window.setInterval(shuffleColors, 3000);
+		colorShuffleTimer = window.setInterval(changeColor, 15000);
 		paused = false;
 	}
 }
@@ -169,8 +215,8 @@ function restartGame() {
 	shuffleColors();
 	changeColor();
 	//  Restart the timers
-	tileShuffleTimer = window.setInterval(shuffleColors, 2000);
-	colorShuffleTimer = window.setInterval(changeColor, 10000);
+	tileShuffleTimer = window.setInterval(shuffleColors, 3000);
+	colorShuffleTimer = window.setInterval(changeColor, 15000);
 }
 
 //  Calls the functions and stuff
