@@ -1,7 +1,6 @@
-var colors = ["red", "pink", "purple", "blue", "green", "orange"];
+var colors = ['red', 'pink', 'purple', 'blue', 'green', 'orange'];
 var score = 0;
 var lives = 5;
-var time = 0;
 var paused = false;
 
 //  Get a random color
@@ -17,15 +16,15 @@ function drawTiles() {
 	//  Loop it 5 times, once for each row
 	for (i = 0; i < 5; i++) {
 		//  Create a div with the class row
-		var row = document.createElement("div");
-		row.className = "row";
+		var row = document.createElement('div');
+		row.className = 'row';
 		//  Loop it 5x for each column
 		for (x = 1; x <= 5; x++) {
 			//  Create a cell
-			var cell = document.createElement("div");
+			var cell = document.createElement('div');
 			//  Add a random color class
 			var randCol = randomColor();
-			cell.className += "tile " + randCol;
+			cell.className += 'tile ' + randCol;
 			//  Add color attribute
 			cell.setAttribute('color', randCol);
 			//  Add an onclick event
@@ -68,20 +67,19 @@ function checkTile() {
 			}
 			// Add all the attributes and classes and stuff
 			this.setAttribute('color', randCol);
-			var newClass = "tile " + randCol;
+			var newClass = 'tile ' + randCol;
 			this.setAttribute('class', newClass);
 		} else {
 			// Add all the attributes and classes and stuff
 			this.setAttribute('color', randCol);
-			var newClass = "tile " + randCol;
+			var newClass = 'tile ' + randCol;
 			this.setAttribute('class', newClass);
 		}
 	} else {
 		lives -= 1;
 		document.getElementById('livesText').innerHTML = lives;
 		if (lives <= 0) {
-			alert('GAME OVER!');
-			location.reload();
+			gameOver();
 		}
 	}
 }
@@ -95,7 +93,7 @@ function shuffleColors() {
 		var randCol = randomColor();
 		//  If the color 
 		tilesArray[xx].setAttribute('color', randCol);
-		var newClass = "tile " + randCol;
+		var newClass = 'tile ' + randCol;
 		tilesArray[xx].setAttribute('class', newClass);
 		tilesArray[xx].setAttribute('class', newClass);
 	}
@@ -133,6 +131,39 @@ function pauseTimers() {
 		colorShuffleTimer = window.setInterval(changeColor, 10000);
 		paused = false;
 	}
+}
+
+function gameOver() {
+	var area = document.getElementById('game');
+	//  Create a div (the popup)
+	var popup = document.createElement('div');
+	//  Give it the right class and id
+	popup.setAttribute('class', 'popup');
+	popup.setAttribute('id', 'popup');
+	//  Add content to the popup
+	popup.innerHTML = '<h3>Game Over!</h3><p>Your score was: ' + score + '<br><button onclick="restartGame()">Restart</button><a href="https://twitter.com/intent/tweet?text=I%20played%20SpeedTile%20and%20got%20a%20score%20of%20' + score + '.%20Dare%20to%20beat%20me%3F%20URL">Tweet your score</a></p>';
+	//  Add the popup to the game
+	area.appendChild(popup);
+	//  Stop the timers
+	window.clearInterval(tileShuffleTimer);
+	window.clearInterval(colorShuffleTimer);
+}
+
+function restartGame() {
+	//  Reset score and lives
+	score = 0;
+	document.getElementById('scoreText').innerHTML = score;
+	lives = 5;
+	document.getElementById('livesText').innerHTML = lives;
+	//  Remove the popup
+	var popupBox = document.getElementById('popup');
+	popupBox.parentNode.removeChild(popupBox);
+	//  Shuffle the tiles and the color
+	shuffleColors();
+	changeColor();
+	//  Restart the timers
+	tileShuffleTimer = window.setInterval(shuffleColors, 2000);
+	colorShuffleTimer = window.setInterval(changeColor, 10000);
 }
 
 //  Calls the functions and stuff

@@ -47,3 +47,15 @@ button {
 	color: #ffffff;
 	background: #f59d26;
 }
+/* GAMEOVER POPUP */
+.popup {
+	width: 400px;
+	height: 200px;
+	background: #fcfcfc;
+	z-index: 1000;
+	position: absolute;
+	left: 75px;
+	top: 275px;
+	border-radius: 10px;
+	box-shadow: 5px 5px 5px rgba(149, 149, 149, 0.81);
+}
