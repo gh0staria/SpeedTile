@@ -196,20 +196,7 @@ function gameOver() {
 }
 
 function restartGame() {
-	//  Reset score and lives
-	score = 0;
-	document.getElementById('scoreText').innerHTML = score;
-	lives = 5;
-	document.getElementById('livesText').innerHTML = lives;
-	//  Remove the popup
-	var popupBox = document.getElementById('popup');
-	popupBox.parentNode.removeChild(popupBox);
-	//  Shuffle the tiles and the color
-	shuffleColors();
-	changeColor();
-	//  Restart the timers
-	tileShuffleTimer = window.setInterval(shuffleColors, 3000);
-	colorShuffleTimer = window.setInterval(changeColor, 15000);
+	location.reload();
 }
 
 //  Calls the functions and stuff
