@@ -104,7 +104,7 @@ function setCurrentColor() {
 
 //  Handles events when the player clicks on a tile
 function checkTile() {
-	if (paused === false) {
+	if (paused === false && gameEnded === false) {
 		var currentColorSpan = document.getElementById('colorSpan');
 		//  If the colors match
 		if (this.getAttribute('color') === currentColorSpan.getAttribute('color')) {
@@ -150,7 +150,7 @@ function checkTile() {
 
 //  Randomizes all tile colors
 function shuffleColors() {
-	if (paused === false) {
+	if (paused === false && gameEnded === false) {
 		var tilesArray = document.getElementsByClassName('tile');
 		//  Loop 25 times, once per tile
 		for (xx = 0; xx < tilesArray.length; xx += 1) {
@@ -183,6 +183,7 @@ function changeColor() {
 //  Shuffle the tile board every 2 seconds
 var tileShuffleTimer = window.setInterval(shuffleColors, 3000);
 
+//  Pauses the game
 function pauseTimers() {
 	if (paused === false) {
 		//  Clear the timers

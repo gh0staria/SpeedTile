@@ -8,6 +8,9 @@
     user-select: none;
 }
 /* Standard selectors */
+#game {
+	z-index: -1;
+}
 .tile {
 	width: 100px;
 	height: 100px;
@@ -75,13 +78,13 @@ button {
 	width: 400px;
 	height: 200px;
 	background: #fcfcfc;
-	z-index: 1000;
-	position: absolute;
-	left: 75px;
-	top: 275px;
+	position: relative;
+	margin: -500px auto 0 auto;
 	border-radius: 10px;
 	box-shadow: 5px 5px 50px #959595;
 	text-align: center;
+	overflow: visible;
+	z-index: 2;
 }
 /* MOBILE DEVICES */
 @media (max-width: 480px) {
@@ -101,6 +104,9 @@ button {
 		height: 19%;
 		margin: 2px;
 	}
+	.popup {
+		margin: -400px auto 0 auto;
+	}
 }
 @media (max-width: 320px) {
 	.tile {
@@ -119,3 +125,9 @@ button {
 		height: 19%;
 		margin: 2px;
 	}
+	.popup {
+		width: 250px;
+		height: 175px;
+		margin: -275px auto 0 auto;
+	}
+}
