@@ -19,6 +19,11 @@
 	width: 520px;
 	height: 540px;
 	overflow: hidden;
+	margin: 0 auto;
+}
+#textStats {
+	margin: auto;
+	text-align: center;
 }
 #colorSpan {
 	text-transform: uppercase;
@@ -35,7 +40,10 @@ h2 {
 }
 button {
 	margin: 3px;
-	padding: 2px;
+	padding: 10px;
+	background: #f0f0f0;
+	border: 1px solid #aaaaaa;
+	border-radius: 5px;
 }
 /* colors */
 .red {
@@ -72,45 +80,42 @@ button {
 	left: 75px;
 	top: 275px;
 	border-radius: 10px;
-	box-shadow: 5px 5px 5px rgba(149, 149, 149, 0.81);
+	box-shadow: 5px 5px 50px #959595;
+	text-align: center;
 }
 /* MOBILE DEVICES */
-@media (max-width: 414px) {
+@media (max-width: 480px) {
 	.tile {
-		width: 75px;
-		height: 75px;
+		width: 19%;
+		height: 100%;
 		border-radius: 7px;
-		margin: 2px;
+		margin: 1px;
 	}
 	#grid {
-		width: 400px;
-		height: 410px;
+		width: 100%;
+		height: 450px;
 		overflow: hidden;
 	}
-}
-@media (max-width: 400px) {
-	.tile {
-		width: 65px;
-		height: 65px;
-		border-radius: 6px;
+	.row {
+		width: 100%;
+		height: 19%;
 		margin: 2px;
-	}
-	#grid {
-		width: 350px;
-		height: 360px;
-		overflow: hidden;
 	}
 }
 @media (max-width: 320px) {
 	.tile {
-		width: 60px;
-		height: 60px;
-		border-radius: 6px;
+		width: 19%;
+		height: 100%;
+		border-radius: 7px;
 		margin: 1px;
 	}
 	#grid {
-		width: 310px;
-		height: 330px;
+		width: 100%;
+		height: 300px;
 		overflow: hidden;
 	}
-}
+	.row {
+		width: 100%;
+		height: 19%;
+		margin: 2px;
+	}
