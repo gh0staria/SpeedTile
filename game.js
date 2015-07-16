@@ -183,17 +183,24 @@ function changeColor() {
 
 //  Pauses the game
 function pauseTimers() {
+	var pauseButton = document.getElementById('pauseBtn');
 	if (paused === false) {
 		//  Clear the timers
 		clearInterval(tileShuffleTimer);
 		clearInterval(gameClock);
 		clearInterval(difficultyTimer);
+		//  Change the button's value
+		pauseButton.setAttribute('value', 'Play');
+		//  Set the variable
 		paused = true;
 	} else {
 		//  Start the timers again
 		tileShuffleTimer = window.setInterval(shuffleColors, refreshTime);
 		gameClock = setInterval(updateClock, 1000);
 		difficultyTimer = setInterval(increaseDifficulty, 10000);
+		//  Change the button's value
+		pauseButton.setAttribute('value', 'Pause');
+		//  Set the variable
 		paused = false;
 	}
 }
@@ -207,7 +214,7 @@ function gameOver() {
 	popup.setAttribute('class', 'popup');
 	popup.setAttribute('id', 'popup');
 	//  Add content to the popup
-	popup.innerHTML = '<h2>Game Over!</h2><p>Your score was: ' + score + '<br><br><button onclick="restartGame()">Restart</button><br><a href="https://twitter.com/intent/tweet?text=I%20played%20SpeedTile%20and%20got%20a%20score%20of%20' + score + '.%20Dare%20to%20beat%20me%3F%20http%3A%2F%2Fgh0staria.github.io%2FSpeedTile%2F"><button>Tweet your score</button></a></p>';
+	popup.innerHTML = '<h2>Game Over!</h2><p>Your score was: ' + score + '<br><br><input type="button" onclick="restartGame()" value="Restart"></input><br><a href="https://twitter.com/intent/tweet?text=I%20played%20SpeedTile%20and%20got%20a%20score%20of%20' + score + '.%20Dare%20to%20beat%20me%3F%20http%3A%2F%2Fgh0staria.github.io%2FSpeedTile%2F"><input type="button" value="Tweet Your Score"></input></a></p>';
 	//  Add the popup to the game
 	area.appendChild(popup);
 	//  Stop the timers

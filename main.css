@@ -44,7 +44,7 @@ p {
 h2 {
 	margin: 6px;
 }
-button {
+input[type="button"] {
 	margin: 3px;
 	padding: 10px;
 	background: #f0f0f0;
