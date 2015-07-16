@@ -54,6 +54,7 @@ var colors = ['red', 'pink', 'purple', 'blue', 'green', 'orange'];
 var score = 0;
 var lives = 5;
 var paused = false;
+var gameEnded = false;
 var i;
 var x;
 var xx;
@@ -118,7 +119,7 @@ function checkTile() {
 		if (randCol === currColor) {
 			//  Randomize it again
 			while (randCol === currColor) {
-				var randCol = randomColor();
+				randCol = randomColor();
 			}
 			// Add all the attributes and classes and stuff
 			this.setAttribute('color', randCol);
@@ -127,18 +128,20 @@ function checkTile() {
 		} else {
 			// Add all the attributes and classes and stuff
 			this.setAttribute('color', randCol);
-			var newClass = 'tile ' + randCol;
+			newClass = 'tile ' + randCol;
 			this.setAttribute('class', newClass);
 		}
 	} else {
 		if (lives > 0) {
 			lives -= 1;
 			document.getElementById('livesText').innerHTML = lives;
-			if (lives === 0) {
+			if (lives === 0 && gameEnded === false) {
 				gameOver();
 			}
 		} else {
-			gameOver();
+			if (gameEnded === false) {
+				gameOver();
+			}
 		}
 	}
 }
@@ -189,6 +192,7 @@ function pauseTimers() {
 }
 
 function gameOver() {
+	gameEnded = true;
 	var area = document.getElementById('game');
 	//  Create a div (the popup)
 	var popup = document.createElement('div');
@@ -196,7 +200,7 @@ function gameOver() {
 	popup.setAttribute('class', 'popup');
 	popup.setAttribute('id', 'popup');
 	//  Add content to the popup
-	popup.innerHTML = '<h3>Game Over!</h3><p>Your score was: ' + score + '<br><button onclick="restartGame()">Restart</button><a href="https://twitter.com/intent/tweet?text=I%20played%20SpeedTile%20and%20got%20a%20score%20of%20' + score + '.%20Dare%20to%20beat%20me%3F%20http%3A%2F%2Fgh0staria.github.io%2FSpeedTile%2F"><button>Tweet your score</button></a></p>';
+	popup.innerHTML = '<h2>Game Over!</h2><p>Your score was: ' + score + '<br><br><button onclick="restartGame()">Restart</button><br><a href="https://twitter.com/intent/tweet?text=I%20played%20SpeedTile%20and%20got%20a%20score%20of%20' + score + '.%20Dare%20to%20beat%20me%3F%20http%3A%2F%2Fgh0staria.github.io%2FSpeedTile%2F"><button>Tweet your score</button></a></p>';
 	//  Add the popup to the game
 	area.appendChild(popup);
 	//  Stop the timers
