@@ -8,6 +8,9 @@
     user-select: none;
 }
 /* Standard selectors */
+body {
+	font-family: sans-serif;
+}
 #game {
 	z-index: -1;
 }
@@ -25,7 +28,7 @@
 	margin: 0 auto;
 }
 #textStats {
-	margin: auto;
+	margin: 0 auto;
 	text-align: center;
 }
 #colorSpan {
@@ -47,6 +50,10 @@ button {
 	background: #f0f0f0;
 	border: 1px solid #aaaaaa;
 	border-radius: 5px;
+}
+table {
+	margin: 0 auto;
+	width: 520px;
 }
 /* colors */
 .red {
@@ -107,6 +114,9 @@ button {
 	.popup {
 		margin: -400px auto 0 auto;
 	}
+	table {
+		width: 100%;
+	}
 }
 @media (max-width: 320px) {
 	.tile {
@@ -129,5 +139,8 @@ button {
 		width: 250px;
 		height: 175px;
 		margin: -275px auto 0 auto;
+	}
+	table {
+		width: 100%;
 	}
 }
