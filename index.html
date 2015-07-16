@@ -13,14 +13,12 @@
 				<h2 id="colorDisplay"></h2>
 				<table>
 					<tr>
-						<td><strong>Score:</strong> <span id="scoreText">0</span></td>
+						<td style="text-align: left"><strong>Score:</strong> <span id="scoreText">0</span></td>
 						<td><strong>Lives:</strong> <span id="livesText">5</span></td>
 						<td><strong>Time:</strong> <span id="minutes"></span>:<span id="seconds"></span></td>
+						<td style="text-align: right"><input type="button" value="Pause" id="pauseBtn" onclick="pauseTimers()"></td>
 					</tr>
 				</table>
-				<p>
-					<input type="button" value="Pause" id="pauseBtn" onclick="pauseTimers()">
-				</p>
 			</div>			
 			<div id="grid"></div>
 		</div>
