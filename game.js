@@ -104,43 +104,45 @@ function setCurrentColor() {
 
 //  Handles events when the player clicks on a tile
 function checkTile() {
-	var currentColorSpan = document.getElementById('colorSpan');
-	//  If the colors match
-	if (this.getAttribute('color') === currentColorSpan.getAttribute('color')) {
-		//  Add points to the score
-		score += 5;
-		//  Update the score
-		document.getElementById('scoreText').innerHTML = score;
-		//  Get the current color
-		var currColor = this.getAttribute('color');
-		//  Set a random color
-		var randCol = randomColor();
-		//  If the colors are the same:
-		if (randCol === currColor) {
-			//  Randomize it again
-			while (randCol === currColor) {
-				randCol = randomColor();
-			}
-			// Add all the attributes and classes and stuff
-			this.setAttribute('color', randCol);
-			var newClass = 'tile ' + randCol;
-			this.setAttribute('class', newClass);
-		} else {
-			// Add all the attributes and classes and stuff
-			this.setAttribute('color', randCol);
-			newClass = 'tile ' + randCol;
-			this.setAttribute('class', newClass);
-		}
-	} else {
-		if (lives > 0) {
-			lives -= 1;
-			document.getElementById('livesText').innerHTML = lives;
-			if (lives === 0 && gameEnded === false) {
-				gameOver();
+	if (paused === false) {
+		var currentColorSpan = document.getElementById('colorSpan');
+		//  If the colors match
+		if (this.getAttribute('color') === currentColorSpan.getAttribute('color')) {
+			//  Add points to the score
+			score += 5;
+			//  Update the score
+			document.getElementById('scoreText').innerHTML = score;
+			//  Get the current color
+			var currColor = this.getAttribute('color');
+			//  Set a random color
+			var randCol = randomColor();
+			//  If the colors are the same:
+			if (randCol === currColor) {
+				//  Randomize it again
+				while (randCol === currColor) {
+					randCol = randomColor();
+				}
+				// Add all the attributes and classes and stuff
+				this.setAttribute('color', randCol);
+				var newClass = 'tile ' + randCol;
+				this.setAttribute('class', newClass);
+			} else {
+				// Add all the attributes and classes and stuff
+				this.setAttribute('color', randCol);
+				newClass = 'tile ' + randCol;
+				this.setAttribute('class', newClass);
 			}
 		} else {
-			if (gameEnded === false) {
-				gameOver();
+			if (lives > 0) {
+				lives -= 1;
+				document.getElementById('livesText').innerHTML = lives;
+				if (lives === 0 && gameEnded === false) {
+					gameOver();
+				}
+			} else {
+				if (gameEnded === false) {
+					gameOver();
+				}
 			}
 		}
 	}
@@ -148,16 +150,18 @@ function checkTile() {
 
 //  Randomizes all tile colors
 function shuffleColors() {
-	var tilesArray = document.getElementsByClassName('tile');
-	//  Loop 25 times, once per tile
-	for (xx = 0; xx < tilesArray.length; xx += 1) {
-		//  Pick a random color
-		var randCol = randomColor();
-		//  If the color 
-		tilesArray[xx].setAttribute('color', randCol);
-		var newClass = 'tile ' + randCol;
-		tilesArray[xx].setAttribute('class', newClass);
-		tilesArray[xx].setAttribute('class', newClass);
+	if (paused === false) {
+		var tilesArray = document.getElementsByClassName('tile');
+		//  Loop 25 times, once per tile
+		for (xx = 0; xx < tilesArray.length; xx += 1) {
+			//  Pick a random color
+			var randCol = randomColor();
+			//  If the color 
+			tilesArray[xx].setAttribute('color', randCol);
+			var newClass = 'tile ' + randCol;
+			tilesArray[xx].setAttribute('class', newClass);
+			tilesArray[xx].setAttribute('class', newClass);
+		}
 	}
 }
 
