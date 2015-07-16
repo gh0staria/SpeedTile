@@ -55,9 +55,10 @@ var score = 0;
 var lives = 5;
 var paused = false;
 var gameEnded = false;
-var i;
-var x;
-var xx;
+var sec = 0;
+var gameClock;
+var steps = 0;
+var refreshTime = 3000;
 
 //  Get a random color
 function randomColor() {
@@ -70,12 +71,12 @@ function drawTiles() {
 	//  Define where the grid will be made
 	var tileContainer = document.getElementById('grid');
 	//  Loop it 5 times, once for each row
-	for (i = 0; i < 5; i += 1) {
+	for (var i = 0; i < 5; i += 1) {
 		//  Create a div with the class row
 		var row = document.createElement('div');
 		row.className = 'row';
 		//  Loop it 5x for each column
-		for (x = 1; x <= 5; x += 1) {
+		for (var x = 1; x <= 5; x += 1) {
 			//  Create a cell
 			var cell = document.createElement('div');
 			//  Add a random color class
@@ -153,7 +154,7 @@ function shuffleColors() {
 	if (paused === false && gameEnded === false) {
 		var tilesArray = document.getElementsByClassName('tile');
 		//  Loop 25 times, once per tile
-		for (xx = 0; xx < tilesArray.length; xx += 1) {
+		for (var xx = 0; xx < tilesArray.length; xx += 1) {
 			//  Pick a random color
 			var randCol = randomColor();
 			//  If the color 
@@ -180,18 +181,19 @@ function changeColor() {
 	}
 }
 
-//  Shuffle the tile board every 2 seconds
-var tileShuffleTimer = window.setInterval(shuffleColors, 3000);
-
 //  Pauses the game
 function pauseTimers() {
 	if (paused === false) {
 		//  Clear the timers
-		window.clearInterval(tileShuffleTimer);
+		clearInterval(tileShuffleTimer);
+		clearInterval(gameClock);
+		clearInterval(difficultyTimer);
 		paused = true;
 	} else {
 		//  Start the timers again
-		tileShuffleTimer = window.setInterval(shuffleColors, 3000);
+		tileShuffleTimer = window.setInterval(shuffleColors, refreshTime);
+		gameClock = setInterval(updateClock, 1000);
+		difficultyTimer = setInterval(increaseDifficulty, 10000);
 		paused = false;
 	}
 }
@@ -216,6 +218,37 @@ function restartGame() {
 	location.reload();
 }
 
-//  Calls the functions and stuff
+//  Handle the extra zeroes
+function pad(val) { return val > 9 ? val : '0' + val; }
+
+//  Displays and updates the timer every second
+function updateClock() {
+	//  Update the second and minute spans
+	document.getElementById('seconds').innerHTML = pad(++sec%60);
+	document.getElementById('minutes').innerHTML = pad(parseInt(sec/60,10));
+	//  Add to the steps variable
+	steps++;
+}
+
+function increaseDifficulty() {
+	//  Subtract from the time
+	refreshTime -= 250;
+	//  Make sure it doesn't go less than one second
+	if (refreshTime <= 1000) {
+		refreshTime = 1000;
+	}
+	//  Clear and reset the timer
+	clearInterval(tileShuffleTimer);
+	tileShuffleTimer = setInterval(shuffleColors, refreshTime);
+}
+
+//  Draw the tiles
 drawTiles();
+//  Set the main color
 setCurrentColor();
+//  Start the game clock
+gameClock = setInterval(updateClock, 1000);
+//  Increase the difficulty every 10 seconds
+var difficultyTimer = setInterval(increaseDifficulty, 10000);
+//  Init timer
+var tileShuffleTimer = setInterval(shuffleColors, refreshTime);
